@@ -1,9 +1,11 @@
+from typing import Optional 
+
 VARIATION_SELECTOR_START = 0xFE00
 VARIATION_SELECTOR_END = 0xFE0F
 VARIATION_SELECTOR_SUPPLEMENT_START = 0xE0100
 VARIATION_SELECTOR_SUPPLEMENT_END = 0xE01EF
 END_MARKER = chr(0xFE0F)
-MAX_TEXT_LENGTH = 255  # Define max length explicitly
+MAX_TEXT_LENGTH = 255 
 
 # Precompute lookup tables for decoding to speed up lookups
 VARIATION_TO_BYTE = {
@@ -22,7 +24,7 @@ def to_variation_selector(byte: int) -> str:
         return chr(VARIATION_SELECTOR_SUPPLEMENT_START + (byte - 16))
     raise ValueError(f"Byte out of range: {byte}")
 
-def from_variation_selector(code_point: int) -> int | None:
+def from_variation_selector(code_point: int) -> Optional[int]:
     """Converts a variation selector character back into a byte using lookup table."""
     return VARIATION_TO_BYTE.get(code_point)
 
