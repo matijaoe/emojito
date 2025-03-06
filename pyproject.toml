@@ -35,3 +35,9 @@ repository = "https://github.com/matijaoe/emojito"
 
 [tool.hatch.build.targets.wheel]
 packages = ["emojito"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
