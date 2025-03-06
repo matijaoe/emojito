@@ -43,4 +43,10 @@ def decode(text: str) -> str:
         byte for char in text 
         if (byte := from_variation_selector(ord(char))) is not None
     ]
-    return bytes(decoded_bytes).decode("utf-8")
+    
+    # Convert bytes to string and remove any trailing END_MARKER character
+    result = bytes(decoded_bytes).decode("utf-8")
+    if result and result[-1] == chr(0xFE0F):
+        result = result[:-1]
+    
+    return result
