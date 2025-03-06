@@ -1,4 +1,5 @@
 from emojito import encode, decode
+import pytest
 
 def clean_decoded(text):
     """Helper function to remove the end marker if present"""
